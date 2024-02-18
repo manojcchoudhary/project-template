@@ -27,6 +27,7 @@ We try to keep this project as simple as possible, so you can start with just th
 - [NextAuth.js](https://next-auth.js.org)
 - [Drizzle](https://orm.drizzle.team/)
 - [Tailwind CSS](https://tailwindcss.com)
+- [Postgresql](https://www.postgresql.org/)
 
 ## How do I deploy this?
 
