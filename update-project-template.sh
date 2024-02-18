@@ -37,4 +37,16 @@ if [[ -f ".git/config" ]] && [[ -n "$GITHUB_URL" ]]; then
     echo "Git remote origin URL has been updated."
 fi
 
+read -p "Do you want to run npm install? (y/N): " run_npm
+run_npm=${run_npm:-n} # Default to 'n' if no input is given
+
+if [[ $run_npm =~ ^[Yy]$ ]]; then
+    echo "Running npm install..."
+    npm install
+    echo "npm install completed."
+else
+    echo "Skipping npm install."
+fi
+
+
 echo "Project settings have been updated in all applicable files."
