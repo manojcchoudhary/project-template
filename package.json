@@ -10,7 +10,7 @@
     "db:drop": "drizzle-kit drop:pg",
     "db:push": "drizzle-kit push:pg",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "tsx ./src/server/db/seed.ts",
+    "db:seed": "env-cmd -f .env tsx ./src/server/db/seed.ts",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
@@ -26,7 +26,8 @@
     "postgres": "^3.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "env-cmd": "^10.1.0"
   },
   "devDependencies": {
     "@types/eslint": "^8.44.7",
