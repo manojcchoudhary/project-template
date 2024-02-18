@@ -9,7 +9,7 @@
 
 # On Lunux and macOS you can run this script directly - `./start-database.sh`
 
-DB_CONTAINER_NAME="mona-lisa-postgres"
+DB_CONTAINER_NAME="PG_DATABASE_TABLE_PREFIX_postgres"
 
 if ! [ -x "$(command -v docker)" ]; then
   echo "Docker is not installed. Please install docker and try again.\nDocker install guide: https://docs.docker.com/engine/install/"
@@ -27,6 +27,7 @@ set -a
 source .env
 
 DB_PASSWORD=$(echo $DATABASE_URL | awk -F':' '{print $3}' | awk -F'@' '{print $1}')
+DB_NAME=$(echo $DATABASE_URL | awk -F'/' '{print $NF}' | awk -F'?' '{print $1}')
 
 if [ "$DB_PASSWORD" = "password" ]; then
   echo "You are using the default database password"
@@ -39,6 +40,6 @@ if [ "$DB_PASSWORD" = "password" ]; then
   sed -i -e "s/:password@/:$DB_PASSWORD@/" .env
 fi
 
-docker run --name $DB_CONTAINER_NAME -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_DB=mona-lisa -d -p 5432:5432 docker.io/postgres
+docker run --name $DB_CONTAINER_NAME -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_DB=$DB_NAME -d -p 5432:5432 docker.io/postgres
 
 echo "Database container was succesfuly created"

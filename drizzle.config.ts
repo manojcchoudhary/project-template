@@ -5,8 +5,9 @@ import { env } from "@/env.js";
 export default {
   schema: "./src/server/db/schema.ts",
   driver: "pg",
+  out: "./drizzle",
   dbCredentials: {
     connectionString: env.DATABASE_URL,
   },
-  tablesFilter: ["mona-lisa_*"],
+  tablesFilter: ["PG_DATABASE_TABLE_PREFIX_*"],
 } satisfies Config;
